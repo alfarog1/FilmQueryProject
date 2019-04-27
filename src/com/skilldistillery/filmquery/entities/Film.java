@@ -1,5 +1,7 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.util.List;
+
 public class Film {
 	private int  id;
 	private String title;
@@ -12,28 +14,53 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String set;
-	
+	private List<Actor> actor;
+	private String language;
 	
 	
 	
 
+
 	
-	public Film(int filmId) {
+	public String getLanguage() {
+		return language;
+	}
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	public Film() {
 		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", year=" + year
-				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
-				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating + ", set=" + set
-				+ "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append("\n🎥 " + title + " 🎥\n" + "\tRating: " + rating + "\n\tRelease Year: " +  year + "\n\tLanguage: " + language +"\n" + description + "\n" );
+		sb.append("\nActors: \n\n");
+		
+		for (int i = 0; i < actor.size(); i++) {
+			sb.append("*-" + actor.get(i)+ "\n");
+		}
+		
+		return sb.toString();
+//		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", year=" + year
+//				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
+//				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating + ", set=" + set
+//				+ "]";
+	}
+	public List<Actor> getActor() {
+		return actor;
+	}
+	public void setActor(List<Actor> actor) {
+		this.actor = actor;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((actor == null) ? 0 : actor.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((language == null) ? 0 : language.hashCode());
 		result = prime * result + languageId;
 		result = prime * result + length;
 		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
@@ -57,12 +84,22 @@ public class Film {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
+		if (actor == null) {
+			if (other.actor != null)
+				return false;
+		} else if (!actor.equals(other.actor))
+			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
 		if (id != other.id)
+			return false;
+		if (language == null) {
+			if (other.language != null)
+				return false;
+		} else if (!language.equals(other.language))
 			return false;
 		if (languageId != other.languageId)
 			return false;

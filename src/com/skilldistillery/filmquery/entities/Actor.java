@@ -1,5 +1,8 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.sql.ResultSet;
+import java.util.List;
+
 public class Actor {
 	private int id;
 	private String firstName;
@@ -31,7 +34,10 @@ public class Actor {
 
 	@Override
 	public String toString() {
-		return "Actor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append(firstName + " " + lastName + "");
+				
+		return sb.toString();
 	}
 
 	public Actor(int id, String firstName, String lastName) {
@@ -46,5 +52,19 @@ public class Actor {
 		this.id = id;
 	
 	}
+
+	public Actor(String firstName, String lastName) {
+
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	
+
+	
+
+	
+
+	
 
 }
